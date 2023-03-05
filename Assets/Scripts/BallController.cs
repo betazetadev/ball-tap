@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public interface IBallTapHandler
 {
@@ -17,11 +18,13 @@ public class BallController : MonoBehaviour
     private Vector2 dragEndPosition;
     public TextMeshProUGUI touchCounterText;
     private IBallTapHandler tapHandler;
+    private Vector3 defaultScale;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         mainCamera = Camera.main;
+        defaultScale = transform.localScale;
     }
 
     private void Update()
@@ -57,6 +60,8 @@ public class BallController : MonoBehaviour
                 float angle = Mathf.Lerp(10f, 70f, horizontalForce);
                 Vector2 forceDirection = Quaternion.Euler(0f, 0f, angle * horizontalDirection) * Vector2.up;
                 rb.AddForce(forceDirection * verticalForce, ForceMode2D.Impulse);
+
+                StartCoroutine(SquashEffect());
                 
                 // Notify the tap handler that the ball was tapped
                 if (tapHandler != null)
@@ -87,5 +92,18 @@ public class BallController : MonoBehaviour
     public void SetTapHandler(IBallTapHandler tapHandler)
     {
         this.tapHandler = tapHandler;
+    }
+    
+    IEnumerator SquashEffect() {
+        transform.localScale = defaultScale * 0.8f;
+        yield return new WaitForSeconds(0.1f);
+        float duration = 0.1f;
+        float time = 0f;
+        while (time < duration) {
+            transform.localScale = Vector3.Lerp(transform.localScale, defaultScale, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.localScale = defaultScale;
     }
 }
