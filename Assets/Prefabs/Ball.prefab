@@ -136,4 +136,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 10
   horizontalForce: 0.025
-  touchArea: {fileID: 7991246211787809092, guid: 1ff9d609367b61b31834e268795b400f, type: 3}
+  touchCounterText: {fileID: 0}

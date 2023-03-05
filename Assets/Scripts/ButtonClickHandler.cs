@@ -9,4 +9,12 @@ public class ButtonClickHandler : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    
+    public void EndGame()
+    {
+        // Add code here to perform any actions before quitting the game
+
+        // Quit the game
+        Application.Quit();
+    }
 }

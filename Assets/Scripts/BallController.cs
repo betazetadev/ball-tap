@@ -105,7 +105,7 @@ public class BallController : MonoBehaviour
         float maxSquash = 0.2f;
         float minSquash = 0.02f;
         float distanceFromCenter = Mathf.Abs(touchPosition.y - Screen.height / 2f);
-        float squashFactor = Mathf.Clamp(distanceFromCenter / (Screen.height / 2f), 0f, 1f);
+        float squashFactor = Mathf.Clamp(distanceFromCenter / (Screen.height / 1f), 0f, 0.5f);
         float squash = Mathf.Lerp(maxSquash, minSquash, squashFactor);
 
         // Squash in the touch area
