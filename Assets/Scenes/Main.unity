@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c22a167bd524a17ac203ea8f1b8044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0.4198113, b: 0.4198113, a: 0.5}
-  heightRatio: 0.3
+  color: {r: 0.41960788, g: 1, b: 0.9287037, a: 0.28235295}
+  heightRatio: 0.5
 --- !u!4 &183948459
 Transform:
   m_ObjectHideFlags: 0
