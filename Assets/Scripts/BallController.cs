@@ -60,8 +60,10 @@ public class BallController : MonoBehaviour
                 float angle = Mathf.Lerp(10f, 70f, horizontalForce);
                 Vector2 forceDirection = Quaternion.Euler(0f, 0f, angle * horizontalDirection) * Vector2.up;
                 rb.AddForce(forceDirection * verticalForce, ForceMode2D.Impulse);
-
-                StartCoroutine(SquashEffect());
+                
+                Vector2 touchPosition = Input.mousePosition;
+         //       RotateBall(touchPosition);
+                StartCoroutine(SquashEffect(touchPosition));
                 
                 // Notify the tap handler that the ball was tapped
                 if (tapHandler != null)
@@ -94,16 +96,52 @@ public class BallController : MonoBehaviour
         this.tapHandler = tapHandler;
     }
     
-    IEnumerator SquashEffect() {
-        transform.localScale = defaultScale * 0.8f;
-        yield return new WaitForSeconds(0.1f);
-        float duration = 0.1f;
-        float time = 0f;
-        while (time < duration) {
-            transform.localScale = Vector3.Lerp(transform.localScale, defaultScale, time / duration);
-            time += Time.deltaTime;
+    IEnumerator SquashEffect(Vector2 touchPosition)
+    {
+        Vector3 startScale = transform.localScale;
+        Vector3 endScale = startScale;
+
+        // Calculate how much to squash the ball
+        float maxSquash = 0.2f;
+        float minSquash = 0.02f;
+        float distanceFromCenter = Mathf.Abs(touchPosition.y - Screen.height / 2f);
+        float squashFactor = Mathf.Clamp(distanceFromCenter / (Screen.height / 2f), 0f, 1f);
+        float squash = Mathf.Lerp(maxSquash, minSquash, squashFactor);
+
+        // Squash in the touch area
+        endScale.x += squash;
+        endScale.y -= squash;
+
+        // Squash in the opposite direction of the touch
+        if (touchPosition.y > Screen.height / 2f)
+        {
+            endScale.x -= squash;
+            endScale.y += squash;
+        }
+
+        // Animate the squash effect
+        float duration = 0.2f;
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            transform.localScale = Vector3.Lerp(startScale, endScale, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.localScale = defaultScale;
+
+        // Reset the scale to the original size
+        transform.localScale = startScale;
     }
+    
+    /*void RotateBall(Vector2 touchPosition)
+    {
+        // Calculate the direction from the ball to the touch position
+        Vector2 direction = (touchPosition - (Vector2)transform.position).normalized;
+
+        // Calculate the angle between the direction and the up vector
+        float angle = Vector2.SignedAngle(Vector2.up, direction);
+
+        // Rotate the ball by that angle
+        transform.Rotate(0, 0, angle);
+    }*/
 }
