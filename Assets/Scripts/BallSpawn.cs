@@ -9,6 +9,8 @@ public class BallSpawn : MonoBehaviour, IBallTapHandler
 
     void Start()
     {
+		PlayerPrefs.DeleteKey("TouchCounter");
+
         // Spawn the ball object at the spawner's position and rotation
         GameObject ball = Instantiate(ballPrefab, transform.position, transform.rotation);
         ball.GetComponent<BallController>().SetTapHandler(this);
@@ -19,5 +21,6 @@ public class BallSpawn : MonoBehaviour, IBallTapHandler
     {
         tapCount++;
         tapCountText.text = "" + tapCount.ToString();
+		PlayerPrefs.SetInt("TouchCounter", tapCount);
     }
 }

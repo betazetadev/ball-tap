@@ -16,7 +16,6 @@ public class BallController : MonoBehaviour
     private Camera mainCamera;
     private Vector2 dragStartPosition;
     private Vector2 dragEndPosition;
-    public TextMeshProUGUI touchCounterText;
     private IBallTapHandler tapHandler;
     private Vector3 defaultScale;
 
@@ -78,7 +77,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            SceneManager.LoadScene("StartMenu");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
