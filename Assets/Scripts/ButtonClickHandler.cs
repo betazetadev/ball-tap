@@ -5,9 +5,14 @@ public class ButtonClickHandler : MonoBehaviour
 {
 
     // This method will be called when the button is clicked
-    public void OnButtonClick()
+    public void MainGame()
     {
         SceneManager.LoadScene("Main");
+    }
+
+    public void StartMenu()
+    {
+        SceneManager.LoadScene("StartMenu");
     }
     
     public void EndGame()

@@ -9,5 +9,7 @@ public class GameOverManager : MonoBehaviour
     {
         int touchCounter = PlayerPrefs.GetInt("TouchCounter");
         touchCountText.text = "" + touchCounter.ToString();
+        var ds = new DataService ("scores.db");
+        ds.SaveScore (touchCounter);
     }
 }
