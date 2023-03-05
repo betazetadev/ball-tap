@@ -1,4 +1,10 @@
 using UnityEngine;
+using TMPro;
+
+public interface IBallTapHandler
+{
+    void OnBallTapped();
+}
 
 public class BallController : MonoBehaviour
 {
@@ -8,6 +14,8 @@ public class BallController : MonoBehaviour
     private Camera mainCamera;
     private Vector2 dragStartPosition;
     private Vector2 dragEndPosition;
+    public TextMeshProUGUI touchCounterText;
+    private IBallTapHandler tapHandler;
 
     private void Start()
     {
@@ -48,6 +56,12 @@ public class BallController : MonoBehaviour
                 float angle = Mathf.Lerp(10f, 70f, horizontalForce);
                 Vector2 forceDirection = Quaternion.Euler(0f, 0f, angle * horizontalDirection) * Vector2.up;
                 rb.AddForce(forceDirection * verticalForce, ForceMode2D.Impulse);
+                
+                // Notify the tap handler that the ball was tapped
+                if (tapHandler != null)
+                {
+                    tapHandler.OnBallTapped();
+                }
             }
         }
     }
@@ -67,5 +81,10 @@ public class BallController : MonoBehaviour
             transform.position = Vector2.zero;
             rb.velocity = Vector2.zero;
         }
+    }
+
+    public void SetTapHandler(IBallTapHandler tapHandler)
+    {
+        this.tapHandler = tapHandler;
     }
 }
