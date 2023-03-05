@@ -19,6 +19,13 @@ public class BallController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Check if the click position is lower than half of the screen height
+            float clickY = Input.mousePosition.y / Screen.height;
+            if (clickY > 0.5f)
+            {
+                return;
+            }
+            
             Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hitCollider = Physics2D.OverlapPoint(mousePos);
 
@@ -28,7 +35,7 @@ public class BallController : MonoBehaviour
                 float distance = mousePos.x - transform.position.x;
 
                 // Determine the horizontal direction based on the side of the touch on the ball
-                float horizontalDirection = Mathf.Sign(distance) * -1f;
+                float horizontalDirection = -(Mathf.Sign(distance) * -1f);
 
                 // Increase the horizontal force multiplier based on the distance of the touch from the center of the ball
                 float horizontalForceMultiplier = Mathf.Lerp(0.5f, 1f, horizontalForce);
@@ -59,36 +66,6 @@ public class BallController : MonoBehaviour
         {
             transform.position = Vector2.zero;
             rb.velocity = Vector2.zero;
-        }
-    }
-
-    private void OnMouseDown()
-    {
-        Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Collider2D hitCollider = Physics2D.OverlapPoint(mousePos);
-
-        if (hitCollider != null && hitCollider.gameObject == gameObject)
-        {
-            // Calculate the horizontal force based on the distance between the click position and the ball center
-            float distance = mousePos.x - transform.position.x;
-            float horizontalRatio = Mathf.Abs(distance) / (transform.localScale.x / 2f);
-
-            // Determine the horizontal direction based on the side of the touch on the ball
-            float horizontalDirection = Mathf.Sign(distance) * -1f;
-
-            // Increase the horizontal force multiplier based on the distance of the touch from the center of the ball
-            float horizontalForceMultiplier = Mathf.Lerp(0.5f, 1f, horizontalRatio);
-
-            // Calculate the vertical force based on the speed of the mouse drag
-            float verticalSpeed = Mathf.Clamp(rb.velocity.y, -5f, 5f);
-            float verticalForce = jumpForce * verticalSpeed / 5f;
-
-            // Apply the forces to the ball
-            rb.velocity = Vector2.zero;
-            float angle = Mathf.Lerp(10f, 70f, horizontalRatio);
-            Vector2 forceDirection = Quaternion.Euler(0f, 0f, angle * horizontalDirection) * Vector2.up;
-            rb.AddForce(forceDirection * jumpForce * horizontalForceMultiplier, ForceMode2D.Impulse);
-            rb.AddForce(Vector2.up * verticalForce, ForceMode2D.Impulse);
         }
     }
 }
