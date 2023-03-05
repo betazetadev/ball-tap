@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public interface IBallTapHandler
 {
@@ -70,7 +71,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Game Over");
+            SceneManager.LoadScene("StartMenu");
         }
     }
 
