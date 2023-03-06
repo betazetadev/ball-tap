@@ -22,4 +22,10 @@ public class ButtonClickHandler : MonoBehaviour
         // Quit the game
         Application.Quit();
     }
+
+    public void CircleGestureDetected()
+    {
+		
+		Debug.Log("Circle gesture detected");
+    }
 }

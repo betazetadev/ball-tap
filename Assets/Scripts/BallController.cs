@@ -36,7 +36,7 @@ public class BallController : MonoBehaviour
             {
                 return;
             }
-            
+
             Vector2 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hitCollider = Physics2D.OverlapPoint(mousePos);
 
@@ -59,25 +59,17 @@ public class BallController : MonoBehaviour
                 float angle = Mathf.Lerp(10f, 70f, horizontalForce);
                 Vector2 forceDirection = Quaternion.Euler(0f, 0f, angle * horizontalDirection) * Vector2.up;
                 rb.AddForce(forceDirection * verticalForce, ForceMode2D.Impulse);
-                
+
                 Vector2 touchPosition = Input.mousePosition;
-         //       RotateBall(touchPosition);
+                //       RotateBall(touchPosition);
                 StartCoroutine(SquashEffect(touchPosition));
-                
+
                 // Notify the tap handler that the ball was tapped
                 if (tapHandler != null)
                 {
                     tapHandler.OnBallTapped();
                 }
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            SceneManager.LoadScene("GameOver");
         }
     }
 
