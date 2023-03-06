@@ -22,7 +22,7 @@ public class BallSpawn : MonoBehaviour, IBallTapHandler
 		int bonusPoints = PlayerPrefs.GetInt("TouchBonusCounter");
         totalResult += 1 + (bonusPoints / 2);
         tapCountText.text = "" + totalResult;
-Debug.Log("+1 Tap + " + bonusPoints + " Bonus" + " = " + totalResult);
+		PlayerPrefs.SetInt("TouchCounter", totalResult);
 		PlayerPrefs.SetInt("TouchBonusCounter", 0);
     }
 }

@@ -73,6 +73,14 @@ public class BallController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+    
     private void FixedUpdate()
     {
         if (transform.position.y < -5f)

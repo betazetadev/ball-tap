@@ -28,14 +28,13 @@ public class ButtonClickHandler : MonoBehaviour
 
     public void CircleGestureDetected()
     {
-    Debug.Log("Circle gesture detected");
-    comboText.SetActive(true); // Show the text object
-	comboText.GetComponent<TextMeshProUGUI>().text = "+ " + (PlayerPrefs.GetInt("TouchBonusCounter") / 2);	
-    Invoke("HideText", 2f); // Schedule the HideText method to be called after 2 seconds
+    	comboText.SetActive(true); // Show the text object
+		comboText.GetComponent<TextMeshProUGUI>().text = "+ " + (PlayerPrefs.GetInt("TouchBonusCounter") / 2);	
+    	Invoke("HideText", 2f); // Schedule the HideText method to be called after 2 seconds
     }
 
-private void HideText()
-{
-    comboText.SetActive(false); // Hide the text object
-}
+	private void HideText()
+	{
+	    comboText.SetActive(false); // Hide the text object
+	}
 }
