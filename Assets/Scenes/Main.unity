@@ -279,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -668, y: 220}
+  m_AnchoredPosition: {x: -658, y: 220}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1041521069
@@ -906,6 +906,10 @@ PrefabInstance:
       propertyPath: tapCountText
       value: 
       objectReference: {fileID: 4593229890391457318}
+    - target: {fileID: 1587760670582474706, guid: 276ac9a07b2342b54a410cb7335e4ad9, type: 3}
+      propertyPath: topScoreText
+      value: 
+      objectReference: {fileID: 1041521069}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 276ac9a07b2342b54a410cb7335e4ad9, type: 3}
 --- !u!1001 &4593229890391457317
@@ -985,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3596076390065509754, guid: f4d564a3c7b73a8cda21b2f400d0abda, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 4.72
       objectReference: {fileID: 0}
     - target: {fileID: 3596076390065509754, guid: f4d564a3c7b73a8cda21b2f400d0abda, type: 3}
       propertyPath: m_AnchoredPosition.y
