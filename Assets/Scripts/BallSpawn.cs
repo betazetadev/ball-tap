@@ -5,6 +5,7 @@ public class BallSpawn : MonoBehaviour, IBallTapHandler
 {
     public GameObject ballPrefab;
     public TextMeshProUGUI tapCountText;
+	public TextMeshProUGUI topScoreText;
 
 	private int totalResult = 0;
 
@@ -15,6 +16,9 @@ public class BallSpawn : MonoBehaviour, IBallTapHandler
         // Spawn the ball object at the spawner's position and rotation
         GameObject ball = Instantiate(ballPrefab, transform.position, transform.rotation);
         ball.GetComponent<BallController>().SetTapHandler(this);
+		DataService ds = new DataService("scores.db");
+		Score topScore = ds.GetTopScore();
+		topScoreText.text = "" + topScore.Value;
     }
     
     public void OnBallTapped()

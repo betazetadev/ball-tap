@@ -1,11 +1,10 @@
 using SQLite4Unity3d;
 using UnityEngine;
-#if !UNITY_EDITOR
-using System.Collections;
 using System.IO;
-#endif
+using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class DataService  {
 
@@ -78,6 +77,11 @@ public class DataService  {
 		_connection.Insert (p);
 		return p;
 	}
+	
+	public Score GetTopScore(){
+		Score topScore = _connection.Table<Score>().OrderByDescending(x => x.Value).FirstOrDefault();
+		return topScore;
+	}
 }
 
 // Score class
@@ -89,6 +93,5 @@ public class Score {
 	public string Name { get; set; }
     
 	public Score() {
-		// Empty constructor
 	}
 }
