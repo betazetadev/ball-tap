@@ -28,4 +28,4 @@ This project was made possible thanks to the help of ChatGPT, a large language m
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-![Buy me a coffee if you liked it](bmc_qr.png "Buy me a coffee if you liked it")
+[<img src="bmc_qr.png">](https://www.buymeacoffee.com/betazetadev "Buy me a coffee if you liked it")
