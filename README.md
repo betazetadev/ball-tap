@@ -6,11 +6,10 @@ This is a pet weekend project of a videogame created with AI, built with Python 
 
 ## Installation
 
-1. Install Python from the official website: https://www.python.org/downloads/
-2. Install Unity from the official website: https://unity.com/
-3. Clone the repository: `git clone https://github.com/your-username/betazeta.dev.git`
-4. Open the project in Unity
-5. Run the game and enjoy!
+1. Install Unity from the official website: https://unity.com/
+2. Clone the repository: `git clone https://github.com/your-username/betazeta.dev.git`
+3. Open the project in Unity
+4. Run the game and enjoy!
 
 ## How to Play
 
@@ -27,5 +26,3 @@ This project was made possible thanks to the help of ChatGPT, a large language m
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-[<img src="bmc_qr.png">](https://www.buymeacoffee.com/betazetadev "Buy me a coffee if you liked it")
